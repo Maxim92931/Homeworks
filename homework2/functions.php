@@ -1,14 +1,14 @@
 <?php
 function task1($ArrayOfStrings)
 {
+    if (func_get_arg(1) == true) {
+        return implode('', $ArrayOfStrings);
+    }
+
     foreach ($ArrayOfStrings as $value) {
         echo '<p>';
         echo $value;
         echo '</p>';
-    }
-
-    if (func_get_arg(1) == true) {
-        return implode('', $ArrayOfStrings);
     }
 
     return null;
@@ -40,6 +40,10 @@ function task2($arrayOfNumbers, $sign)
                 $result *= $arrayOfNumbers[$i];
                 break;
             case '/':
+                if ($arrayOfNumbers[$i] == 0) {
+                    echo 'На ноль делить нельзя';
+                    return;
+                }
                 $result /= $arrayOfNumbers[$i];
         }
     }
@@ -50,6 +54,11 @@ function task2($arrayOfNumbers, $sign)
 function task3()
 {
     $parameters = func_get_args();
+
+    if (array_search('0', $parameters)) {
+        echo 'На ноль делить нельзя';
+        return;
+    }
 
     $result = $parameters[1];
 
